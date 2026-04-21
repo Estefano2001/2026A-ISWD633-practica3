@@ -74,7 +74,7 @@ docker run -d --name server-drupal --publish 9700:80 -v vol-drupal-modules:/var/
 
 ### Ingrese al server-drupal y siga el paso a paso para la instalación.
 # COMPLETAR CON UNA CAPTURA DE PANTALLA DEL PASO 4
-![image alt](https://github.com/Estefano2001/2026A-ISWD633-practica1/blob/9deb1db279f90890069e2994a3fbf4abaadc39a7/Lista.jpeg)
+![image alt](https://github.com/Estefano2001/2026A-ISWD633-practica3/blob/ba4ba380c04adcf91cb8a2369f126704db2af94d/configuracionserver-dupral.jpeg)
 _La instalación puede tomar varios minutos, mientras espera realice un diagrama de los contenedores que ha creado en este apartado._
 
 # COMPLETAR CON EL DIAGRAMA SOLICITADO
