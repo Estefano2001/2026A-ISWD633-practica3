@@ -8,6 +8,9 @@ docker volume create <nombre volumen>
 ```
 
 ### Crear el volumen nombrado: vol-postgres
+```
+docker volume create vol-postgres 
+```
 # COMPLETAR CON EL COMANDO
 
 ## MOUNTPOINT
@@ -40,38 +43,45 @@ docker run -d --name <nombre contenedor> --mount type=volume,src=<nombre >,dst=<
 
 ### Crear la red net-drupal de tipo bridge
 # COMPLETAR CON EL COMANDO
-
+```
+docker network create --driver bridge net-drupal 
+```
 ### Crear un servidor postgres vinculado a la red net-drupal, completar la ruta del contenedor
 ```
-docker run -d --name server-postgres -e POSTGRES_DB=db_drupal -e POSTGRES_PASSWORD=12345 -e POSTGRES_USER=user_drupal --network net-drupal postgres
+docker run -d --name server-postgres -e POSTGRES_DB=db_drupal -e POSTGRES_PASSWORD=12345 -e POSTGRES_USER=user_drupal --network net-drupal -v vol-postgres:/var/lib/postgresql postgres:18
 ```
 _No es necesario exponer el puerto, debido a que nos vamos a conectar desde la misma red de docker_
 
 ### Crear un cliente postgres vinculado a la red drupal a partir de la imagen dpage/pgadmin4, completar el correo
 ```
-docker run -d --name client-postgres --publish published=9500,target=80 -e PGADMIN_DEFAULT_PASSWORD=54321 -e PGADMIN_DEFAULT_EMAIL=<correo> --network net-drupal dpage/pgadmin4
+docker run -d --name client-postgres --publish 9500:80 -e PGADMIN_DEFAULT_PASSWORD=54321 -e PGADMIN_DEFAULT_EMAIL=estefanosantacruzmayo@gmail.com --network net-drupal dpage/pgadmin4
 ```
-
 ### Usar el cliente postgres para conectarse al servidor postgres, para la conexión usar el nombre del servidor en lugar de la dirección IP.
 
 ### Crear los volúmenes necesarios para drupal, esto se puede encontrar en la documentación
 ### COMPLETAR CON LOS COMANDOS
-
+```
+docker volume create vol-drupal-modules
+docker volume create vol-drupal-profiles
+docker volume create vol-drupal-sites
+docker volume create vol-drupal-themes
+ 
+```
 ### Crear el contenedor server-drupal vinculado a la red, usar la imagen drupal, y vincularlo a los volúmenes nombrados
 ```
-docker run -d --name server-drupal --publish published=9700,target=80 -v <nombre volumen>:<ruta contenedor> -v <nombre volumen>:<ruta contenedor> -v <nombre volumen>:<ruta contenedor> -v <nombre volumen>:<ruta contenedor> --network net-drupal drupal
+docker run -d --name server-drupal --publish 9700:80 -v vol-drupal-modules:/var/www/html/modules -v vol-drupal-profiles:/var/www/html/profiles -v vol-drupal-sites:/var/www/html/sites -v vol-drupal-themes:/var/www/html/themes --network net-drupal drupal
 ```
 
 ### Ingrese al server-drupal y siga el paso a paso para la instalación.
 # COMPLETAR CON UNA CAPTURA DE PANTALLA DEL PASO 4
-
+![image alt](https://github.com/Estefano2001/2026A-ISWD633-practica1/blob/9deb1db279f90890069e2994a3fbf4abaadc39a7/Lista.jpeg)
 _La instalación puede tomar varios minutos, mientras espera realice un diagrama de los contenedores que ha creado en este apartado._
 
 # COMPLETAR CON EL DIAGRAMA SOLICITADO
-
+![image alt](https://github.com/Estefano2001/2026A-ISWD633-practica1/blob/9deb1db279f90890069e2994a3fbf4abaadc39a7/Lista.jpeg)
 ### Eliminar un volumen específico
 ```
-docker volume rm <nombre volumen>
+docker volume rm vol-postgres
 ```
 **Considerar**
 Datos Persistentes: Asegúrate de que el volumen no contiene datos críticos antes de eliminarlo, ya que esta operación no se puede deshacer.
