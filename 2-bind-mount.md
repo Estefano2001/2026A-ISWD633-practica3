@@ -2,11 +2,11 @@
 En un bind mount mapeamos (montar) un directorio o archivo específico del sistema de archivos del host con una parte del sistema de ficheros del contenedor.
 
 ```
-docker run -d --name <nombre contenedor> -v <ruta carpeta host>:<ruta carpeta contenedor> <imagen> 
+docker run -d --name mi-nginx -v C:\Users\asus\nginx\html:/usr/share/nginx/html nginx:alpine 
 ```
 ó
 ```
-docker run -d --name <nombre contenedor> --mount type=bind,source=<ruta carpeta host>,target=<ruta carpeta contenedor> <imagen>
+docker run -d --name mi-nginx --mount type=bind,source=C:\Users\asus\nginx\html,target=/usr/share/nginx/html nginx:alpine
 ```
 - destination, dst, target: La ruta donde se monta el archivo o directorio en el contenedor.
 - source, src: El origen del montaje.
