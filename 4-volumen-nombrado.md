@@ -78,7 +78,7 @@ docker run -d --name server-drupal --publish 9700:80 -v vol-drupal-modules:/var/
 _La instalación puede tomar varios minutos, mientras espera realice un diagrama de los contenedores que ha creado en este apartado._
 
 # COMPLETAR CON EL DIAGRAMA SOLICITADO
-![image alt](https://github.com/Estefano2001/2026A-ISWD633-practica1/blob/9deb1db279f90890069e2994a3fbf4abaadc39a7/Lista.jpeg)
+![image alt](https://github.com/Estefano2001/2026A-ISWD633-practica3/blob/d3ccbcc5a8a26482d715b06208f193a4b562fed4/diagrama.png)
 ### Eliminar un volumen específico
 ```
 docker volume rm vol-postgres
